@@ -1,0 +1,30 @@
+<html>
+<head>
+    <title>预测结果</title>
+</head>
+<body>
+    <h1>你可能有X个人在暗恋你！</h1>
+    <p>你是一个很好的人呢！</p>
+    <script>
+        // 获取URL的参数
+        var params = new URLSearchParams(window.location.search);
+        // 获取用户的性别，年龄，个性和爱好的值
+        var gender = params.get("gender");
+        var age = params.get("age");
+        var personality = params.get("personality");
+        var hobby = params.get("hobby");
+        // 根据一些简单的规则，计算一个随机的结果，范围是0到10
+        var result = Math.floor(Math.random() * 22);
+        // 如果用户是女性，年龄在18到25岁之间，个性是外向开朗或幽默风趣，爱好是音乐或旅行，那么结果加2
+        if (gender == "female" && age == "18to25" && (personality == "outgoing" || personality == "funny") && (hobby == "music" || hobby == "travel")) {
+            result += 5;
+        }
+        // 如果用户是男性，年龄在26到35岁之间，个性是严肃认真或善良温柔，爱好是阅读或艺术，那么结果加2
+        if (gender == "male" && age == "26to35" && (personality == "serious" || personality == "kind") && (hobby == "reading" || hobby == "art")) {
+            result += 2;
+        }
+        // 替换X为结果
+        document.querySelector("h1").innerHTML = "你可能有" + result + "个人在暗恋你！";
+    </script>
+</body>
+</html>

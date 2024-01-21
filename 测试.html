@@ -1,0 +1,121 @@
+<html>
+<head>
+    <title>预测暗恋的人数</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #F0F0F0;
+        }
+        h1 {
+            text-align: center;
+            color: #FF0000;
+        }
+        p {
+            text-align: center;
+        }
+        form {
+            margin: 0 auto;
+            width: 300px;
+        }
+        input[type=radio] {
+            margin-right: 10px;
+        }
+        input[type=submit] {
+            display: block;
+            margin: 20px auto;
+            background-color: #FF0000;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+        }
+    </style>
+    <!-- 添加一个JavaScript函数，用于弹出一个确认框 -->
+    <script>
+        function showConfirm() {
+            // 询问用户是否确定提交
+            var result = confirm("你确定要提交吗？");
+            // 如果用户点击了确定，返回true，继续提交
+            // 如果用户点击了取消，返回false，取消提交
+            return result;
+        }
+        // 添加一个JavaScript函数，用于获取用户的输入，计算一个随机的结果，然后显示在一个新的页面上
+        function showResult() {
+            // 获取用户的性别，年龄，个性和爱好的值
+            var gender = document.querySelector("input[name='gender']:checked").value;
+            var age = document.querySelector("input[name='age']:checked").value;
+            var personality = document.querySelector("input[name='personality']:checked").value;
+            var hobby = document.querySelector("input[name='hobby']:checked").value;
+            // 根据一些简单的规则，计算一个随机的结果，范围是0到10
+            var result = Math.floor(Math.random() * 11);
+            // 如果用户是女性，年龄在18到25岁之间，个性是外向开朗或幽默风趣，爱好是音乐或旅行，那么结果加2
+            if (gender == "female" && age == "18to25" && (personality == "outgoing" || personality == "funny") && (hobby == "music" || hobby == "travel")) {
+                result += 2;
+            }
+            // 如果用户是男性，年龄在26到35岁之间，个性是严肃认真或善良温柔，爱好是阅读或艺术，那么结果加2
+            if (gender == "male" && age == "26to35" && (personality == "serious" || personality == "kind") && (hobby == "reading" || hobby == "art")) {
+                result += 2;
+            }
+            // 创建一个新的页面，用于显示结果
+            var newPage = window.open();
+            // 在新页面中写入HTML代码
+            newPage.document.write("<html><head><title>预测结果</title></head><body>");
+            newPage.document.write("<h1>你可能有" + result + "个人在暗恋你！</h1>");
+            newPage.document.write("<p>你很好！</p>");
+            newPage.document.write("</body></html>");
+        }
+    </script>
+</head>
+<body>
+    <h1>预测暗恋的人数</h1>
+    <p>回答以下几个问题，就可以估计一下你可能有多少人在暗恋你。</p>
+    <p>注意：这只是一个娱乐性质的测试，不要太当真哦！😊</p>
+    <form id="quiz" action="result.html" method="get">
+        <p>1. 你的性别是？</p>
+        <input type="radio" id="male" name="gender" value="male" required>
+        <label for="male">男</label>
+        <input type="radio" id="female" name="gender" value="female">
+        <label for="female">女</label>
+        <input type="radio" id="other" name="gender" value="other">
+        <label for="other">其他</label>
+        <p>2. 你的年龄是？</p>
+        <input type="radio" id="under18" name="age" value="under18" required>
+        <label for="under18">18岁以下</label>
+        <input type="radio" id="18to25" name="age" value="18to25">
+        <label for="18to25">18岁到25岁</label>
+        <input type="radio" id="26to35" name="age" value="26to35">
+        <label for="26to35">26岁到35岁</label>
+        <input type="radio" id="36to45" name="age" value="36to45">
+        <label for="36to45">36岁到45岁</label>
+        <input type="radio" id="over45" name="age" value="over45">
+        <label for="over45">45岁以上</label>
+        <p>3. 你的个性是？</p>
+        <input type="radio" id="outgoing" name="personality" value="outgoing" required>
+        <label for="outgoing">外向开朗</label>
+        <input type="radio" id="introverted" name="personality" value="introverted">
+        <label for="introverted">内向沉默</label>
+        <input type="radio" id="funny" name="personality" value="funny">
+        <label for="funny">幽默风趣</label>
+        <input type="radio" id="serious" name="personality" value="serious">
+        <label for="serious">严肃认真</label>
+        <input type="radio" id="kind" name="personality" value="kind">
+        <label for="kind">善良温柔</label>
+        <input type="radio" id="cool" name="personality" value="cool">
+        <label for="cool">酷酷的</label>
+        <p>4. 你的爱好是？</p>
+        <input type="radio" id="sports" name="hobby" value="sports" required>
+        <label for="sports">运动</label>
+        <input type="radio" id="music" name="hobby" value="music">
+        <label for="music">音乐</label>
+        <input type="radio" id="reading" name="hobby" value="reading">
+        <label for="reading">阅读</label>
+        <input type="radio" id="gaming" name="hobby" value="gaming">
+        <label for="gaming">游戏</label>
+        <input type="radio" id="art" name="hobby" value="art">
+        <label for="art">艺术</label>
+        <input type="radio" id="travel" name="hobby" value="travel">
+        <label for="travel">旅行</label>
+        <!-- 在提交按钮上添加一个onclick事件，调用showConfirm函数 -->
+        <input type="submit" value="提交" onclick="return showConfirm()">
+    </form>
+</body>
+</html>
